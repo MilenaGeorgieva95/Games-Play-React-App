@@ -1,10 +1,18 @@
+import gameService from "../../services/gameService";
+
 export default function Create() {
+  const submitAction = async (formData) => {
+    const gameData = Object.fromEntries(formData);
+    const newGame = await gameService.create(gameData);
+    console.log(newGame);
+  };
+
   return (
     <section id="create-page" className="auth">
-      <form id="create">
+      <form id="create" action={submitAction}>
         <div className="container">
           <h1>Create Game</h1>
-          <label for="leg-title">Legendary title:</label>
+          <label htmlFor="leg-title">Legendary title:</label>
           <input
             type="text"
             id="title"
@@ -12,7 +20,7 @@ export default function Create() {
             placeholder="Enter game title..."
           />
 
-          <label for="category">Category:</label>
+          <label htmlFor="category">Category:</label>
           <input
             type="text"
             id="category"
@@ -20,7 +28,7 @@ export default function Create() {
             placeholder="Enter game category..."
           />
 
-          <label for="levels">MaxLevel:</label>
+          <label htmlFor="levels">MaxLevel:</label>
           <input
             type="number"
             id="maxLevel"
@@ -29,7 +37,7 @@ export default function Create() {
             placeholder="1"
           />
 
-          <label for="game-img">Image:</label>
+          <label htmlFor="game-img">Image:</label>
           <input
             type="text"
             id="imageUrl"
@@ -37,7 +45,7 @@ export default function Create() {
             placeholder="Upload a photo..."
           />
 
-          <label for="summary">Summary:</label>
+          <label htmlFor="summary">Summary:</label>
           <textarea name="summary" id="summary"></textarea>
           <input className="btn submit" type="submit" value="Create Game" />
         </div>

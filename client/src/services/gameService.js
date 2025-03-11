@@ -1,4 +1,4 @@
-baseUrl = "http://localhost:/jsonstore/games";
+const baseUrl = "http://localhost:3030/jsonstore/games";
 
 export default {
   async create(gameData) {
