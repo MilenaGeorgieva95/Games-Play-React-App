@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Catalog from "./components/Catalog/Catalog";
 import Register from "./components/Authentication/Register";
 import Login from "./components/Authentication/Login";
+import Create from "./components/Create/Create";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/games" element={<Catalog />} />
+          <Route path="/games/create" element={<Create />} />
           <Route path="/auth">
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/login" element={<Login />} />
