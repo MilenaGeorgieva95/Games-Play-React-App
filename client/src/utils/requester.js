@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3030/jsonstore";
 
-export default async function requester(method, url, body) {
+export async function requester(method, url, body, id) {
   const options = { method };
   if (body) {
     options.headers = {
@@ -8,7 +8,17 @@ export default async function requester(method, url, body) {
     };
     options.body = JSON.stringify(body);
   }
-  const response = await fetch(baseUrl + url, options);
+  const reqUrl = id ? `${baseUrl}${url}/${id}` : `${baseUrl}${url}`;
+  const response = await fetch(reqUrl, options);
   const data = await response.json();
   return data;
 }
+
+const gamesUrl = "/games";
+
+export const gamesRequest = {
+  get: requester.bind(null, "GET", gamesUrl),
+  post: requester.bind(null, "POST", gamesUrl),
+  put: requester.bind(null, "GET", gamesUrl),
+  del: requester.bind(null, "DELETE", gamesUrl),
+};
