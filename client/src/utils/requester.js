@@ -10,6 +10,9 @@ export async function requester(method, url, body, id) {
   }
   const reqUrl = id ? `${baseUrl}${url}/${id}` : `${baseUrl}${url}`;
   const response = await fetch(reqUrl, options);
+  if (response.status === 204) {
+    return response;
+  }
   const data = await response.json();
   return data;
 }
