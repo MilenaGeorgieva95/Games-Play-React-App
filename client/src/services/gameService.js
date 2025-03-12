@@ -7,10 +7,9 @@ export default {
     const data = gamesRequest.post(gameData);
     return data;
   },
-  getAll() {
-    const data = gamesRequest.get();
-    console.log(data);
-
-    return data;
+  async getAll() {
+    const data = await gamesRequest.get();
+    const games = Object.values(data);
+    return games;
   },
 };
