@@ -19,4 +19,8 @@ export default {
   del(gameId) {
     return gamesRequest.del("", gameId);
   },
+  edit(gameId, gameData) {
+    gameData._id = gameId;
+    return gamesRequest.put(gameData, gameId);
+  },
 };

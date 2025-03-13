@@ -22,6 +22,6 @@ const gamesUrl = "/games";
 export const gamesRequest = {
   get: requester.bind(null, "GET", gamesUrl),
   post: requester.bind(null, "POST", gamesUrl),
-  put: requester.bind(null, "GET", gamesUrl),
+  put: requester.bind(null, "PUT", gamesUrl),
   del: requester.bind(null, "DELETE", gamesUrl),
 };

@@ -5,7 +5,7 @@ export default function CatalogItem({ game }) {
     <div className="allGames">
       <div className="allGames-info">
         <img src={game.imageUrl} />
-        <h6>Action</h6>
+        <h6>{game.category}</h6>
         <h2>{game.title}</h2>
         <Link to={`/games/${game._id}/details`} className="details-button">
           Details
