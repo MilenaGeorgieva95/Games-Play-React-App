@@ -6,6 +6,7 @@ import Catalog from "./components/Catalog/Catalog";
 import Register from "./components/Authentication/Register";
 import Login from "./components/Authentication/Login";
 import Create from "./components/Create/Create";
+import Details from "./components/Details/Details";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/games" element={<Catalog />} />
           <Route path="/games/create" element={<Create />} />
+          <Route path="/games/:gameId/details" element={<Details />} />
           <Route path="/auth">
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/login" element={<Login />} />

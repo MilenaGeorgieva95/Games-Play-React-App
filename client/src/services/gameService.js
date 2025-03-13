@@ -12,4 +12,9 @@ export default {
     const games = Object.values(data);
     return games;
   },
+  async getOne(gameId) {
+    const data = await gamesRequest.get("", gameId);
+    // const games = Object.values(data);
+    return data;
+  },
 };
