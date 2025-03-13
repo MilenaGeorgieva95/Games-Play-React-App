@@ -14,7 +14,9 @@ export default {
   },
   async getOne(gameId) {
     const data = await gamesRequest.get("", gameId);
-    // const games = Object.values(data);
     return data;
+  },
+  del(gameId) {
+    return gamesRequest.del("", gameId);
   },
 };

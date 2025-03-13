@@ -7,6 +7,7 @@ import Register from "./components/Authentication/Register";
 import Login from "./components/Authentication/Login";
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
+import Edit from "./components/Edit/Edit";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/games" element={<Catalog />} />
           <Route path="/games/create" element={<Create />} />
           <Route path="/games/:gameId/details" element={<Details />} />
+          <Route path="/games/:gameId/edit" element={<Edit />} />
           <Route path="/auth">
             <Route path="/auth/register" element={<Register />} />
             <Route path="/auth/login" element={<Login />} />
