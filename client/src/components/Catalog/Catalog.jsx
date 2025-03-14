@@ -7,7 +7,6 @@ export default function Catalog() {
 
   useEffect(() => {
     gameService.getAll().then((data) => {
-      console.log(data);
       setGamesData(data);
     });
   }, []);

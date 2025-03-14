@@ -8,8 +8,15 @@ import Login from "./components/Authentication/Login";
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
+import { useState } from "react";
 
 function App() {
+  const [email, setEmail] = useState("");
+
+  const userLoginHandler = (email) => {
+    setEmail(email);
+    console.log(email);
+  };
   return (
     <div id="box">
       <main id="main-content">
@@ -22,7 +29,10 @@ function App() {
           <Route path="/games/:gameId/edit" element={<Edit />} />
           <Route path="/auth">
             <Route path="/auth/register" element={<Register />} />
-            <Route path="/auth/login" element={<Login />} />
+            <Route
+              path="/auth/login"
+              element={<Login onLogin={userLoginHandler} />}
+            />
           </Route>
         </Routes>
       </main>

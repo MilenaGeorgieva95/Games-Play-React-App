@@ -1,7 +1,5 @@
 import { gamesRequest } from "../utils/requester";
 
-const url = "/games";
-
 export default {
   create(gameData) {
     const data = gamesRequest.post(gameData);
