@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import Commentitem from "./CommentItem";
-import commentService from "../../services/commentService";
 
 export default function Comments({ commentsData }) {
   return (
