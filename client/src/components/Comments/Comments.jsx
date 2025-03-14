@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import Commentitem from "./CommentItem";
 import commentService from "../../services/commentService";
 
-export default function Comments({ gameId }) {
-  const [commentsData, setCommentsData] = useState([]);
-  useEffect(() => {
-    commentService.getAll(gameId).then((data) => setCommentsData(data));
-  }, []);
+export default function Comments({ commentsData }) {
   return (
     <>
       {/* <!-- Bonus ( for Guests and Users ) --> */}
@@ -15,7 +11,7 @@ export default function Comments({ gameId }) {
         {commentsData.length > 0 ? (
           <ul>
             {commentsData.map((comment) => (
-              <Commentitem comment={comment} />
+              <Commentitem key={comment._id} comment={comment} />
             ))}
           </ul>
         ) : (
