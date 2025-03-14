@@ -8,7 +8,7 @@ export async function requester(method, url, body, id) {
     };
     options.body = JSON.stringify(body);
   }
-  const reqUrl = id ? `${baseUrl}${url}/${id}` : `${baseUrl}${url}`;
+  const reqUrl = id ? `${url}/${id}` : `${url}`;
   const response = await fetch(reqUrl, options);
   if (response.status === 204) {
     return response;
@@ -17,11 +17,9 @@ export async function requester(method, url, body, id) {
   return data;
 }
 
-const gamesUrl = "/games";
-
-export const gamesRequest = {
-  get: requester.bind(null, "GET", gamesUrl),
-  post: requester.bind(null, "POST", gamesUrl),
-  put: requester.bind(null, "PUT", gamesUrl),
-  del: requester.bind(null, "DELETE", gamesUrl),
+export const request = {
+  get: requester.bind(null, "GET"),
+  post: requester.bind(null, "POST"),
+  put: requester.bind(null, "PUT"),
+  del: requester.bind(null, "DELETE"),
 };

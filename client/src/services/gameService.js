@@ -1,24 +1,26 @@
-import { gamesRequest } from "../utils/requester";
+import { request } from "../utils/requester";
+
+const baseUrl = "http://localhost:3030/jsonstore/games";
 
 export default {
   create(gameData) {
-    const data = gamesRequest.post(gameData);
+    const data = request.post(baseUrl, gameData);
     return data;
   },
   async getAll() {
-    const data = await gamesRequest.get();
+    const data = await request.get(baseUrl);
     const games = Object.values(data);
     return games;
   },
   async getOne(gameId) {
-    const data = await gamesRequest.get("", gameId);
+    const data = await request.get(baseUrl, "", gameId);
     return data;
   },
   del(gameId) {
-    return gamesRequest.del("", gameId);
+    return request.del(baseUrl, "", gameId);
   },
   edit(gameId, gameData) {
     gameData._id = gameId;
-    return gamesRequest.put(gameData, gameId);
+    return request.put(baseUrl, gameData, gameId);
   },
 };
