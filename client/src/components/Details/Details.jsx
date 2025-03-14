@@ -4,7 +4,7 @@ import gameService from "../../services/gameService";
 import Comments from "../Comments/Comments";
 import AddComment from "../Comments/AddComment";
 
-export default function Details() {
+export default function Details({ email }) {
   const { gameId } = useParams();
   const [game, setGame] = useState({});
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function Details() {
         </div>
       </div>
 
-      <AddComment />
+      <AddComment email={email} />
     </section>
   );
 }
