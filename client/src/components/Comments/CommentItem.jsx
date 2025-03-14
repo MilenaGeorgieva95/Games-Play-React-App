@@ -1,7 +1,7 @@
-export default function Commentitem() {
+export default function Commentitem({ comment }) {
   return (
     <li className="comment">
-      <p>Content: I rate this one quite highly.</p>
+      <p>{comment.comment}</p>
     </li>
   );
 }

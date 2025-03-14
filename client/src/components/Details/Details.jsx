@@ -37,7 +37,7 @@ export default function Details({ email }) {
 
         <p className="text">{game.summary}</p>
 
-        <Comments />
+        <Comments gameId={gameId} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">
@@ -50,7 +50,7 @@ export default function Details({ email }) {
         </div>
       </div>
 
-      <AddComment email={email} />
+      <AddComment email={email} gameId={gameId} />
     </section>
   );
 }
