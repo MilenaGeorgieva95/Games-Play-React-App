@@ -15,7 +15,6 @@ function App() {
 
   const userLoginHandler = (email) => {
     setEmail(email);
-    console.log(email);
   };
   return (
     <div id="box">
