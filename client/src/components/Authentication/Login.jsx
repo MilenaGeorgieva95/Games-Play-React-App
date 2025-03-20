@@ -11,7 +11,7 @@ export default function Login({ onLogin }) {
     const formValues = Object.fromEntries(formData);
     // onLogin(formValues.email);
     // navigate("/games");
-    const authData = await login(values.email, values.password);
+    const authData = await login(formValues.email, formValues.password);
     onLogin(authData);
 
     return formValues;
@@ -23,6 +23,7 @@ export default function Login({ onLogin }) {
   });
 
   console.log(values);
+  console.log(isPending);
 
   return (
     <section id="login-page" className="auth">
