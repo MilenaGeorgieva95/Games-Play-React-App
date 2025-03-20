@@ -50,8 +50,10 @@ export const useRegister = () => {
   };
 };
 
-export const useLogout = (token) => {
+export const useLogout = () => {
   const { accessToken } = useContext(UserContext);
   const logout = () => request.get(`${baseUrl}/logout`, "", "", accessToken);
+  console.log(accessToken);
+
   return logout;
 };
