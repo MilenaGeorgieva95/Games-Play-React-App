@@ -1,13 +1,18 @@
 import { useActionState } from "react";
 import { Link, useNavigate } from "react-router";
+import { useLogin } from "../api/authApi";
 
 export default function Login({ onLogin }) {
   const navigate = useNavigate();
 
-  const loginHandler = (previousState, formData) => {
+  const { login } = useLogin();
+
+  const loginHandler = async (previousState, formData) => {
     const formValues = Object.fromEntries(formData);
-    onLogin(formValues.email);
+    // onLogin(formValues.email);
     // navigate("/games");
+    const authData = await login(values.email, values.password);
+    onLogin(authData);
 
     return formValues;
   };

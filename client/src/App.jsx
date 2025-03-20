@@ -13,8 +13,10 @@ import { useState } from "react";
 function App() {
   const [email, setEmail] = useState("");
 
-  const userLoginHandler = (email) => {
-    setEmail(email);
+  const userLoginHandler = (user) => {
+    console.log(user);
+
+    setEmail(user.email);
   };
   return (
     <div id="box">

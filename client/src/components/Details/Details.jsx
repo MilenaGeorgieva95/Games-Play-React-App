@@ -44,7 +44,7 @@ export default function Details({ email }) {
 
         <p className="text">{game.summary}</p>
 
-        <Comments commentsData={commentsData} />
+        <Comments commentsData={commentsData} email={email} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">

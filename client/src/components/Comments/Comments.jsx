@@ -1,6 +1,6 @@
 import Commentitem from "./CommentItem";
 
-export default function Comments({ commentsData }) {
+export default function Comments({ commentsData, email }) {
   return (
     <>
       {/* <!-- Bonus ( for Guests and Users ) --> */}
@@ -9,7 +9,7 @@ export default function Comments({ commentsData }) {
         {commentsData.length > 0 ? (
           <ul>
             {commentsData.map((comment) => (
-              <Commentitem key={comment._id} comment={comment} />
+              <Commentitem key={comment._id} comment={comment} email={email} />
             ))}
           </ul>
         ) : (

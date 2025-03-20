@@ -8,7 +8,7 @@ export async function requester(method, url, body, id) {
     };
     options.body = JSON.stringify(body);
   }
-  const reqUrl = id ? `${url}/${id}` : `${url}`;
+  const reqUrl = id ? `${url}/${id}` : url;
   const response = await fetch(reqUrl, options);
   if (response.status === 204) {
     return response;
