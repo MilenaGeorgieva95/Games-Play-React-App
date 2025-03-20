@@ -3,7 +3,7 @@ import { request } from "../../utils/requester";
 const baseUrl = "http://localhost:3030/users";
 
 export const useLogin = () => {
-  const abortRef = useRef();
+  const abortRef = useRef(new AbortController());
 
   const login = async (email, password) => {
     const loginData = await request.post(
@@ -18,8 +18,7 @@ export const useLogin = () => {
   };
 
   useEffect(() => {
-    const abortController = new AbortController();
-    abortRef.current = abortController;
+    const abortController = abortRef.current;
     return () => abortController.abort();
   });
 
