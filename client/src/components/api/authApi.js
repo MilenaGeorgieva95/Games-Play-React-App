@@ -26,3 +26,25 @@ export const useLogin = () => {
     login,
   };
 };
+
+export const useRegister = () => {
+  const abortRef = useRef(new AbortController());
+
+  const register = async (username, email, password) => {
+    const registerData = await request.post(
+      `${baseUrl}/register`,
+      { username, email, password },
+      { signal: abortRef.current.signal }
+    );
+    return registerData;
+  };
+
+  useEffect(() => {
+    const abortController = abortRef.current;
+    return () => abortController.abort();
+  });
+
+  return {
+    register,
+  };
+};
