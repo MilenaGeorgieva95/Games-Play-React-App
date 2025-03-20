@@ -9,38 +9,35 @@ import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import { useState } from "react";
+import { UserContext } from "./components/contexts/UserContext";
 
 function App() {
-  const [email, setEmail] = useState("");
+  const [authData, setAuthData] = useState("");
 
   const userLoginHandler = (user) => {
     console.log(user);
 
-    setEmail(user.email);
+    setAuthData(user);
   };
   return (
-    <div id="box">
-      <main id="main-content">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/games" element={<Catalog />} />
-          <Route path="/games/create" element={<Create />} />
-          <Route
-            path="/games/:gameId/details"
-            element={<Details email={email} />}
-          />
-          <Route path="/games/:gameId/edit" element={<Edit />} />
-          <Route path="/auth">
-            <Route path="/auth/register" element={<Register />} />
-            <Route
-              path="/auth/login"
-              element={<Login onLogin={userLoginHandler} />}
-            />
-          </Route>
-        </Routes>
-      </main>
-    </div>
+    <UserContext.Provider value={{ ...authData, userLoginHandler }}>
+      <div id="box">
+        <main id="main-content">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/games" element={<Catalog />} />
+            <Route path="/games/create" element={<Create />} />
+            <Route path="/games/:gameId/details" element={<Details />} />
+            <Route path="/games/:gameId/edit" element={<Edit />} />
+            <Route path="/auth">
+              <Route path="/auth/register" element={<Register />} />
+              <Route path="/auth/login" element={<Login />} />
+            </Route>
+          </Routes>
+        </main>
+      </div>
+    </UserContext.Provider>
   );
 }
 

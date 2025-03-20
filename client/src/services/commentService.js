@@ -4,8 +4,10 @@ const baseUrl = "http://localhost:3030/jsonstore/comments";
 
 export default {
   create(email, comment, gameId) {
+    console.log(email);
+
     const body = {
-      owner: email,
+      email,
       comment,
       gameId,
     };

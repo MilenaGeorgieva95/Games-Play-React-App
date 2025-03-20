@@ -1,7 +1,9 @@
 export default function Commentitem({ comment, email }) {
+  console.log(comment);
+
   return (
     <li className="comment">
-      <p>{email}</p>
+      <p>{comment.email}</p>
       <p>{comment.comment}</p>
     </li>
   );
