@@ -10,6 +10,7 @@ import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import { useState } from "react";
 import { UserContext } from "./components/contexts/UserContext";
+import Logout from "./components/Authentication/Logout";
 
 function App() {
   const [authData, setAuthData] = useState("");
@@ -33,6 +34,7 @@ function App() {
             <Route path="/auth">
               <Route path="/auth/register" element={<Register />} />
               <Route path="/auth/login" element={<Login />} />
+              <Route path="/auth/logout" element={<Logout />} />
             </Route>
           </Routes>
         </main>

@@ -1,12 +1,15 @@
 const baseUrl = "http://localhost:3030/jsonstore";
 
-export async function requester(method, url, body, id) {
+export async function requester(method, url, body, id, token) {
   const options = { method };
   if (body) {
     options.headers = {
       "Content-Type": "application/json",
     };
     options.body = JSON.stringify(body);
+  }
+  if (token) {
+    options.headers["X-Authorization"] = token;
   }
   const reqUrl = id ? `${url}/${id}` : url;
   const response = await fetch(reqUrl, options);
