@@ -11,10 +11,10 @@ export async function requester(method, url, body, userCtx) {
     options.body = JSON.stringify(body);
   }
 
-  // const userData = getUserData()
-  // if (userData != null) {
-  //   options.headers["X-Authorization"] = userData.accessToken;
-  // }
+  const userData = userCtx;
+  if (userData && userData.accessToken) {
+    options.headers["X-Authorization"] = userData.accessToken;
+  }
 
   try {
     const res = await fetch(`${host}${url}`, options);
