@@ -1,6 +1,6 @@
 import { request } from "../utils/requester";
 
-const baseUrl = "http://localhost:3030/jsonstore/games";
+const baseUrl = "/jsonstore/games";
 
 export default {
   create(gameData) {
@@ -13,14 +13,14 @@ export default {
     return games;
   },
   async getOne(gameId) {
-    const data = await request.get(baseUrl, "", gameId);
+    const data = await request.get(`${baseUrl}/${gameId}`, "");
     return data;
   },
   del(gameId) {
-    return request.del(baseUrl, "", gameId);
+    return request.del(`${baseUrl}/${gameId}`, "");
   },
   edit(gameId, gameData) {
     gameData._id = gameId;
-    return request.put(baseUrl, gameData, gameId);
+    return request.put(`${baseUrl}/${gameId}`, gameData);
   },
 };

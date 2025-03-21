@@ -1,11 +1,9 @@
 import { request } from "../utils/requester";
 
-const baseUrl = "http://localhost:3030/jsonstore/comments";
+const baseUrl = "/jsonstore/comments";
 
 export default {
   create(email, comment, gameId) {
-    console.log(email);
-
     const body = {
       email,
       comment,

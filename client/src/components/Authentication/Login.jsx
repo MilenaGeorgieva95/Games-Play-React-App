@@ -12,10 +12,10 @@ export default function Login() {
   const loginHandler = async (previousState, formData) => {
     const formValues = Object.fromEntries(formData);
     // onLogin(formValues.email);
-    // navigate("/games");
+
     const authData = await login(formValues.email, formValues.password);
     userLoginHandler(authData);
-
+    navigate("/games");
     return formValues;
   };
 

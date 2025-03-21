@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { request } from "../../utils/requester";
 import { UserContext } from "../contexts/UserContext";
-const baseUrl = "http://localhost:3030/users";
+const baseUrl = "/users";
 
 export const useLogin = () => {
   const abortRef = useRef(new AbortController());

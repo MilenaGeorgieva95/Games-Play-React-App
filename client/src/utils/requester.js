@@ -1,30 +1,39 @@
-const baseUrl = "http://localhost:3030/jsonstore";
+const host = "http://localhost:3030";
 
-export async function requester(method, url, body, id, token) {
-  console.log(token);
+export async function requester(method, url, body, userCtx) {
+  const options = {
+    method,
+    headers: {},
+  };
 
-  const options = { method };
-  if (token) {
-    options.headers["X-Authorization"] = token;
-  }
   if (body) {
-    options.headers = {
-      "Content-Type": "application/json",
-    };
+    options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(body);
   }
 
-  const reqUrl = id ? `${url}/${id}` : url;
+  // const userData = getUserData()
+  // if (userData != null) {
+  //   options.headers["X-Authorization"] = userData.accessToken;
+  // }
 
   try {
-    const response = await fetch(reqUrl, options);
-    if (response.status === 204) {
-      return response;
+    const res = await fetch(`${host}${url}`, options);
+    let data;
+    if (res.status !== 204) {
+      data = await res.json();
     }
-    const data = await response.json();
+
+    if (res.ok == false) {
+      if (res.status === 403) {
+        // clearUserData();
+      }
+      const error = data;
+      throw error;
+    }
     return data;
   } catch (error) {
-    console.log(error);
+    alert(`Error: ${error.message}`);
+    throw error;
   }
 }
 
