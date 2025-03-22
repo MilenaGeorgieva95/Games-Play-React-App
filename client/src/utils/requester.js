@@ -1,18 +1,18 @@
 const host = "http://localhost:3030";
 
-export async function requester(method, url, body, userCtx) {
+export async function requester(method, url, body, token) {
   const options = {
     method,
-    headers: {},
   };
+  if (body || token) {
+    options.headers = {};
+  }
 
   if (body) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(body);
   }
-
-  const userData = userCtx;
-  if (userData && userData.accessToken) {
+  if (token) {
     options.headers["X-Authorization"] = userData.accessToken;
   }
 
