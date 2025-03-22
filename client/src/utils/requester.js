@@ -13,7 +13,7 @@ export async function requester(method, url, body, token) {
     options.body = JSON.stringify(body);
   }
   if (token) {
-    options.headers["X-Authorization"] = userData.accessToken;
+    options.headers["X-Authorization"] = token;
   }
 
   try {

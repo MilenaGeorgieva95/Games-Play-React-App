@@ -13,6 +13,7 @@ export const useLogin = () => {
         email,
         password,
       },
+      null,
       { signal: abortRef.current.signal }
     );
     return loginData;
@@ -51,8 +52,17 @@ export const useRegister = () => {
 };
 
 export const useLogout = () => {
-  const { accessToken } = useContext(UserContext);
-  const logout = () => request.get(`${baseUrl}/logout`, null, accessToken);
+  const { accessToken, userLogoutHandler } = useContext(UserContext);
+  console.log(accessToken);
 
-  return logout;
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    request
+      .get(`${baseUrl}/logout`, null, accessToken)
+      .then(() => userLogoutHandler());
+  }, [accessToken, userLogoutHandler]);
+
+  return { isLoggedOut: !!accessToken };
 };
