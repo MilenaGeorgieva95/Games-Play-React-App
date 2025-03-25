@@ -2,6 +2,20 @@ import { useContext } from "react";
 import { UserContext } from "../components/contexts/UserContext";
 
 export default function useAuth() {
-  const { accessToken } = useContext(UserContext);
-  return { accessToken };
+  const {
+    _id,
+    email,
+    username,
+    accessToken,
+    userLoginHandler,
+    userLogoutHandler,
+  } = useContext(UserContext);
+  return {
+    _id,
+    email,
+    username,
+    accessToken,
+    userLoginHandler,
+    userLogoutHandler,
+  };
 }

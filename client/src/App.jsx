@@ -16,13 +16,9 @@ function App() {
   const [authData, setAuthData] = useState("");
 
   const userLoginHandler = (user) => {
-    console.log(user);
-
     setAuthData(user);
   };
   const userLogoutHandler = (user) => {
-    console.log(user);
-
     setAuthData({});
   };
 

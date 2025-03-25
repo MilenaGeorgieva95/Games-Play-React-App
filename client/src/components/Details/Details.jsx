@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Comments from "../Comments/Comments";
 import AddComment from "../Comments/AddComment";
 import commentService from "../../services/commentService";
-import { UserContext } from "../contexts/UserContext";
 import { useDeleteGame, useGame } from "../api/gamesApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function Details() {
   const { gameId } = useParams();
@@ -13,7 +13,7 @@ export default function Details() {
   const [commentsData, setCommentsData] = useState([]);
   const navigate = useNavigate();
 
-  const { email } = useContext(UserContext);
+  const { email } = useAuth();
 
   useEffect(() => {
     commentService.getAll(gameId).then((data) => setCommentsData(data));
