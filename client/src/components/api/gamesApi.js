@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useEffect, useState } from "react";
 import { request } from "../../utils/requester";
+import useAuth from "../../hooks/useAuth";
 
 const baseUrl = "/data/games";
 
@@ -28,7 +28,7 @@ const baseUrl = "/data/games";
 // };
 
 export const useCreateGame = () => {
-  const { accessToken } = useContext(UserContext);
+  const { accessToken } = useAuth();
   const create = (gameData) => {
     return request.post(baseUrl, gameData, accessToken);
   };
@@ -41,4 +41,25 @@ export const useGames = () => {
     request.get(baseUrl).then(setGames);
   }, []);
   return { games };
+};
+export const useGame = (gameId) => {
+  const [game, setGame] = useState({});
+  useEffect(() => {
+    request.get(`${baseUrl}/${gameId}`).then(setGame);
+  }, [gameId]);
+  return { game };
+};
+export const useEditGame = () => {
+  const { accessToken } = useAuth();
+
+  const edit = (gameId, gameData) =>
+    request.put(`${baseUrl}/${gameId}`, gameData, accessToken);
+  return { edit };
+};
+export const useDeleteGame = () => {
+  const { accessToken } = useAuth();
+
+  const del = (gameId, gameData) =>
+    request.del(`${baseUrl}/${gameId}`, "", accessToken);
+  return { del };
 };
