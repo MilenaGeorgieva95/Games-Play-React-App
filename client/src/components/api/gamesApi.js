@@ -40,3 +40,18 @@ export const useDeleteGame = () => {
     request.del(`${baseUrl}/${gameId}`, "", accessToken);
   return { del };
 };
+
+export const useLatestGames = () => {
+  const [latestGames, setGames] = useState([]);
+
+  useEffect(() => {
+    const PAGE_SIZE = 3;
+    const searchParams = new URLSearchParams({
+      sortBy: "_createdOn desc",
+      pageSize: PAGE_SIZE,
+    });
+
+    request.get(`${baseUrl}?${searchParams.toString()}`).then(setGames);
+  }, []);
+  return { latestGames };
+};
