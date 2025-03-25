@@ -13,7 +13,7 @@ export default function Details() {
   const [commentsData, setCommentsData] = useState([]);
   const navigate = useNavigate();
 
-  const { email } = useAuth();
+  const { email, _id } = useAuth();
 
   useEffect(() => {
     commentService.getAll(gameId).then((data) => setCommentsData(data));
@@ -50,14 +50,16 @@ export default function Details() {
         <Comments commentsData={commentsData} email={email} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-        <div className="buttons">
-          <Link to={`/games/${game._id}/edit`} className="button">
-            Edit
-          </Link>
-          <button className="button" onClick={onDelHandler}>
-            Delete
-          </button>
-        </div>
+        {game._ownerId === _id && (
+          <div className="buttons">
+            <Link to={`/games/${game._id}/edit`} className="button">
+              Edit
+            </Link>
+            <button className="button" onClick={onDelHandler}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
 
       <AddComment
