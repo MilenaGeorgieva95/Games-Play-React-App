@@ -8,17 +8,17 @@ import Login from "./components/Authentication/Login";
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
-import { useState } from "react";
 import { UserContext } from "./components/contexts/UserContext";
 import Logout from "./components/Authentication/Logout";
+import usePersistedState from "./hooks/usePersistedState";
 
 function App() {
-  const [authData, setAuthData] = useState("");
+  const [authData, setAuthData] = usePersistedState("auth", {});
 
   const userLoginHandler = (user) => {
     setAuthData(user);
   };
-  const userLogoutHandler = (user) => {
+  const userLogoutHandler = () => {
     setAuthData({});
   };
 

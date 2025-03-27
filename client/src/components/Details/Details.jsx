@@ -5,6 +5,7 @@ import AddComment from "../Comments/AddComment";
 import commentService from "../../services/commentService";
 import { useDeleteGame, useGame } from "../api/gamesApi";
 import useAuth from "../../hooks/useAuth";
+import { useComments, useCreateComment } from "../api/commentsApi";
 
 export default function Details() {
   const { gameId } = useParams();
@@ -14,10 +15,10 @@ export default function Details() {
   const navigate = useNavigate();
 
   const { email, _id } = useAuth();
+  const { comments } = useComments(gameId);
+  console.log(comments);
 
-  useEffect(() => {
-    commentService.getAll(gameId).then((data) => setCommentsData(data));
-  }, []);
+  const { create } = useCreateComment();
 
   const onDelHandler = async () => {
     const hasConfirm = confirm(
@@ -66,6 +67,7 @@ export default function Details() {
         email={email}
         gameId={gameId}
         onCreate={commentsCreateHandler}
+        onCreate2={create}
       />
     </section>
   );

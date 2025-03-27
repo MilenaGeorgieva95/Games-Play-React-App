@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import gameService from "../../services/gameService";
 import { useEditGame, useGame } from "../api/gamesApi";
 
 export default function Edit() {
