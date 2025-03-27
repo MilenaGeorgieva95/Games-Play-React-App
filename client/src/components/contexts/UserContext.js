@@ -1,5 +1,4 @@
-import { createContext } from "react";
-import usePersistedState from "../../hooks/usePersistedState";
+import { createContext, useContext } from "react";
 
 export const UserContext = createContext({
   _id: "",
@@ -10,21 +9,7 @@ export const UserContext = createContext({
   userLogoutHandler: () => null,
 });
 
-export function UserProvider({ children }) {
-  const [authData, setAuthData] = usePersistedState("auth", {});
-
-  const userLoginHandler = (user) => {
-    setAuthData(user);
-  };
-  const userLogoutHandler = () => {
-    setAuthData({});
-  };
-
-  return (
-    <UserContext.Provider
-      value={{ ...authData, userLoginHandler, userLogoutHandler }}
-    >
-      {children}
-    </UserContext.Provider>
-  );
+export function useUserContext() {
+  const data = useContext(UserContext);
+  return data;
 }

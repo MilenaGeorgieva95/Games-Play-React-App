@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
+import UserProvider from "./providers/UserProvider";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Catalog from "./components/Catalog/Catalog";
@@ -8,7 +9,6 @@ import Login from "./components/Authentication/Login";
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
-import { UserProvider } from "./components/contexts/UserContext";
 import Logout from "./components/Authentication/Logout";
 
 function App() {
