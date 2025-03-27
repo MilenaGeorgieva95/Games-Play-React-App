@@ -17,7 +17,7 @@ export default function () {
 
         {latestGames.map((game) => {
           return (
-            <div className="game">
+            <div className="game" key={game._id}>
               <div className="image-wrap">
                 <img src={game.imageUrl} />
               </div>
