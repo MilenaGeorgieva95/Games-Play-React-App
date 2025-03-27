@@ -10,6 +10,7 @@ export default function useAuth() {
     userLoginHandler,
     userLogoutHandler,
   } = useContext(UserContext);
+  const isAuth = !!accessToken;
   return {
     _id,
     email,
@@ -17,5 +18,6 @@ export default function useAuth() {
     accessToken,
     userLoginHandler,
     userLogoutHandler,
+    isAuth,
   };
 }
