@@ -1,5 +1,3 @@
-import Commentitem from "./CommentItem";
-
 export default function Comments({ commentsData, email }) {
   return (
     <>
@@ -9,7 +7,13 @@ export default function Comments({ commentsData, email }) {
         {commentsData.length > 0 ? (
           <ul>
             {commentsData.map((comment) => (
-              <Commentitem key={comment._id} comment={comment} email={email} />
+              <li
+                key={comment._id}
+                className={`comment${comment.pending ? " pendingComment" : ""}`}
+              >
+                <p>{email}</p>
+                <p>{comment.comment}</p>
+              </li>
             ))}
           </ul>
         ) : (
