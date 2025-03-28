@@ -22,6 +22,7 @@ export const useComments = (gameId) => {
   useEffect(() => {
     const searchParams = new URLSearchParams({
       where: `gameId="${gameId}"`,
+      load: "author=_ownerId:users",
     });
     request
       .get(`${baseUrl}?${searchParams.toString()}`)

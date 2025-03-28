@@ -1,4 +1,4 @@
-export default function Comments({ commentsData, email }) {
+export default function Comments({ commentsData }) {
   return (
     <>
       {/* <!-- Bonus ( for Guests and Users ) --> */}
@@ -11,7 +11,7 @@ export default function Comments({ commentsData, email }) {
                 key={comment._id}
                 className={`comment${comment.pending ? " pendingComment" : ""}`}
               >
-                <p>{email}</p>
+                <p>{comment.author.email}</p>
                 <p>{comment.comment}</p>
               </li>
             ))}

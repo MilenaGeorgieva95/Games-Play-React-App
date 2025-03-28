@@ -12,7 +12,7 @@ export default function Details() {
   const { del } = useDeleteGame();
   const navigate = useNavigate();
 
-  const { email, _id } = useAuth();
+  const { email, username, _id } = useAuth();
   const { comments, addNewComment } = useComments(gameId);
 
   const { create } = useCreateComment();
@@ -31,7 +31,7 @@ export default function Details() {
   const commentsCreateHandler = async (newComment) => {
     const result = await create(gameId, newComment, email);
     // setComments((oldComments) => [...oldComments, result]);
-    addNewComment(result);
+    addNewComment({ ...result, author: { email, username, _id } });
   };
 
   return (
