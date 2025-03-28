@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Comments from "../Comments/Comments";
 import AddComment from "../Comments/AddComment";
@@ -47,7 +46,7 @@ export default function Details() {
 
         <p className="text">{game.summary}</p>
 
-        <Comments commentsData={comments} email={email} />
+        <Comments commentsData={comments} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         {game._ownerId === _id && (
@@ -62,11 +61,7 @@ export default function Details() {
         )}
       </div>
 
-      <AddComment
-        email={email}
-        gameId={gameId}
-        onCreate={commentsCreateHandler}
-      />
+      <AddComment onCreate={commentsCreateHandler} />
     </section>
   );
 }
