@@ -8,6 +8,7 @@ export default function UserProvider({ children }) {
     setAuthData(user);
   };
   const userLogoutHandler = () => {
+    localStorage.clear();
     setAuthData({});
   };
 

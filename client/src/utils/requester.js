@@ -25,7 +25,7 @@ export async function requester(method, url, body, token) {
 
     if (res.ok == false) {
       if (res.status === 403) {
-        // clearUserData();
+        localStorage.clear();
       }
       const error = data;
       throw error;
