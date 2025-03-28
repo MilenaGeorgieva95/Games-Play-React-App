@@ -10,11 +10,10 @@ export default function Details() {
   const { gameId } = useParams();
   const { game } = useGame(gameId);
   const { del } = useDeleteGame();
-  const [commentsData, setCommentsData] = useState([]);
   const navigate = useNavigate();
 
   const { email, _id } = useAuth();
-  const { comments, setComments } = useComments(gameId);
+  const { comments, addNewComment } = useComments(gameId);
 
   const { create } = useCreateComment();
 
@@ -30,8 +29,9 @@ export default function Details() {
   };
 
   const commentsCreateHandler = async (newComment) => {
-    const result = await create(gameId, newComment);
-    setComments((oldComments) => [...oldComments, result]);
+    const result = await create(gameId, newComment, email);
+    // setComments((oldComments) => [...oldComments, result]);
+    addNewComment(result);
   };
 
   return (
