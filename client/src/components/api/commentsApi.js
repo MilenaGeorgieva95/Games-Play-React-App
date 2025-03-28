@@ -1,28 +1,6 @@
-// import { request } from "../utils/requester";
-
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { request } from "../../utils/requester";
-
-// export default {
-//   create(email, comment, gameId) {
-//     const body = {
-//       email,
-//       comment,
-//       gameId,
-//     };
-//     return request.post(baseUrl, body);
-//   },
-//   async getAll(gameId) {
-//     const res = await request.get(baseUrl);
-//     const commentsData = Object.values(res);
-
-//     const comments = commentsData.filter(
-//       (comment) => comment.gameId === gameId
-//     );
-//     return comments;
-//   },
-// };
 
 const baseUrl = "/data/comments";
 
@@ -39,10 +17,10 @@ export const useComments = (gameId) => {
 };
 
 export const useCreateComment = () => {
-  const { accessToken } = useAuth();
-  const create = (email, comment, gameId) => {
+  const { accessToken, _id } = useAuth();
+  const create = (gameId, comment) => {
     const body = {
-      email,
+      _ownerId: _id,
       comment,
       gameId,
     };

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Comments from "../Comments/Comments";
 import AddComment from "../Comments/AddComment";
-import commentService from "../../services/commentService";
 import { useDeleteGame, useGame } from "../api/gamesApi";
 import useAuth from "../../hooks/useAuth";
 import { useComments, useCreateComment } from "../api/commentsApi";
@@ -16,7 +15,6 @@ export default function Details() {
 
   const { email, _id } = useAuth();
   const { comments } = useComments(gameId);
-  console.log(comments);
 
   const { create } = useCreateComment();
 
@@ -31,8 +29,9 @@ export default function Details() {
     navigate("/games");
   };
 
-  const commentsCreateHandler = (newComment) => {
-    setCommentsData((oldComments) => [...oldComments, newComment]);
+  const commentsCreateHandler = async (newComment) => {
+    // setCommentsData((oldComments) => [...oldComments, newComment]);
+    await create(gameId, newComment);
   };
 
   return (
@@ -48,7 +47,7 @@ export default function Details() {
 
         <p className="text">{game.summary}</p>
 
-        <Comments commentsData={commentsData} email={email} />
+        <Comments commentsData={comments} email={email} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         {game._ownerId === _id && (
@@ -67,7 +66,6 @@ export default function Details() {
         email={email}
         gameId={gameId}
         onCreate={commentsCreateHandler}
-        onCreate2={create}
       />
     </section>
   );
