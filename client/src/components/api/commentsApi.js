@@ -13,7 +13,7 @@ export const useComments = (gameId) => {
     });
     request.get(`${baseUrl}?${searchParams.toString()}`).then(setComments);
   }, [accessToken, gameId]);
-  return { comments };
+  return { comments, setComments };
 };
 
 export const useCreateComment = () => {
