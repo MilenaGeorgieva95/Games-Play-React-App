@@ -9,7 +9,8 @@ export default function Comments({ commentsData }) {
             {commentsData.map((comment) => (
               <li
                 key={comment._id}
-                className={`comment${comment.pending ? " pendingComment" : ""}`}
+                className="comment"
+                style={{ backgroundColor: comment.pending ? "lightgray" : "" }}
               >
                 <p>{comment.author.email}</p>
                 <p>{comment.comment}</p>

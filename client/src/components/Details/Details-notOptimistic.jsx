@@ -1,11 +1,9 @@
-import { useOptimistic } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import Comments from "../Comments/Comments";
 import AddComment from "../Comments/AddComment";
 import { useDeleteGame, useGame } from "../api/gamesApi";
 import useAuth from "../../hooks/useAuth";
 import { useComments, useCreateComment } from "../api/commentsApi";
-import { v4 as uuid } from "uuid";
 
 export default function Details() {
   const { gameId } = useParams();
@@ -13,10 +11,10 @@ export default function Details() {
   const { del } = useDeleteGame();
   const navigate = useNavigate();
 
-  const { email, _id } = useAuth();
+  const { email, username, _id } = useAuth();
+  const { comments, addNewComment } = useComments(gameId);
+
   const { create } = useCreateComment();
-  const { comments, setComments } = useComments(gameId);
-  const [optimisticComments, setOptimisticComments] = useOptimistic(comments);
 
   const onDelHandler = async () => {
     const hasConfirm = confirm(
@@ -30,19 +28,9 @@ export default function Details() {
   };
 
   const commentsCreateHandler = async (newComment) => {
-    const newOptimisticComment = {
-      _id: uuid(),
-      _ownerId: _id,
-      gameId,
-      newComment,
-      pending: true,
-    };
-    setOptimisticComments((oldComments) => [
-      ...oldComments,
-      newOptimisticComment,
-    ]);
-    const result = await create(gameId, newComment);
-    setComments((oldComments) => [...oldComments, result]);
+    const result = await create(gameId, newComment, email);
+    // setComments((oldComments) => [...oldComments, result]);
+    addNewComment({ ...result, author: { email, username, _id } });
   };
 
   return (
@@ -58,7 +46,7 @@ export default function Details() {
 
         <p className="text">{game.summary}</p>
 
-        <Comments commentsData={optimisticComments} email={email} />
+        <Comments commentsData={comments} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         {game._ownerId === _id && (
@@ -73,11 +61,7 @@ export default function Details() {
         )}
       </div>
 
-      <AddComment
-        email={email}
-        gameId={gameId}
-        onCreate={commentsCreateHandler}
-      />
+      <AddComment onCreate={commentsCreateHandler} />
     </section>
   );
 }
