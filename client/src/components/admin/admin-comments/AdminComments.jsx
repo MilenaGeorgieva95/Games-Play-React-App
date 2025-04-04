@@ -4,9 +4,21 @@ import { request } from "../../../utils/requester";
 const commentsUrl = "/data/comments";
 
 export default class AdminComments extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [{ text: "testTest" }],
+      name: "John Smith",
+    };
+  }
+
   async componentDidMount() {
+    console.log(this.state);
+
     const comments = await request.get(commentsUrl);
-    console.log(comments);
+    this.setState({ comments }, () => {
+      console.log(this.state);
+    });
   }
   render() {
     return (
