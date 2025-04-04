@@ -12,6 +12,7 @@ import Edit from "./components/Edit/Edit";
 import Logout from "./components/Authentication/Logout";
 import AuthGuard from "./components/guards/AuthGuard";
 import GuestGuard from "./components/guards/GuestGuard";
+import Admin from "./components/admin/Admin";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/auth/login" element={<Login />} />
               <Route path="/auth/register" element={<Register />} />
             </Route>
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
       </div>
