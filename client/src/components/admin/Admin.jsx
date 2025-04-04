@@ -1,11 +1,15 @@
-import React from "react";
+import { Component } from "react";
+import AdminComments from "./admin-comments/AdminComments";
 
-export default class Admin extends React.Component {
+import styles from "./Admin.module.css";
+
+export default class Admin extends Component {
   render() {
     return (
-      <section>
+      <section className={styles["admin-section"]}>
         <h1>Admin Page</h1>
         <p>This is the admin page</p>
+        <AdminComments />
       </section>
     );
   }
