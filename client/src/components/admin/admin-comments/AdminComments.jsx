@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { request } from "../../../utils/requester";
+import AdmminCommentItem from "./AdminCommentItem";
 
 const commentsUrl = "/data/comments";
 
@@ -23,7 +24,9 @@ export default class AdminComments extends Component {
   render() {
     return (
       <ul>
-        <li></li>
+        {this.state.comments.map((comment) => (
+          <AdmminCommentItem key={comment._id} comment={comment.comment} />
+        ))}
       </ul>
     );
   }

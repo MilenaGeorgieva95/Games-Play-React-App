@@ -1519,10 +1519,17 @@
     comments: {
       "0a272c58-b7ea-4e09-a000-7ec988248f66": {
         _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-        content: "Great game!",
+        comment: "Great game!",
         _createdOn: 1614260681375,
         _id: "0a272c58-b7ea-4e09-a000-7ec988248f66",
         gameId: "da143899-b484-4f87-8b70-1a3607b72d12",
+      },
+      "e7fbbf16-0207-44e9-90b6-4007a0f0afaa": {
+        comment: "Nice one!",
+        gameId: "16556940-95f1-43dc-9ad1-34affe32eb54",
+        _createdOn: 1743760313997,
+        _id: "e7fbbf16-0207-44e9-90b6-4007a0f0afaa",
+        _ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
       },
     },
   };
